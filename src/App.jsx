@@ -3,82 +3,75 @@ import FileUpload from './components/FileUpload';
 import PdfMerge from './components/PdfMerge';
 import PdfTextExtract from './components/PdfTextExtract';
 import PdfScanner from './components/PdfScanner';
+import './AppModern.css';
+
+const tools = [
+  { key: 'upload', label: 'PDF Upload', icon: '📄' },
+  { key: 'merge', label: 'PDF Merge', icon: '➕' },
+  { key: 'extract', label: 'Extract Text', icon: '📝' },
+  { key: 'scanner', label: 'PDF Scanner', icon: '📷' }
+];
 
 export default function App() {
-    const [darkMode, setDarkMode] = useState(false);
-    const [activeTool, setActiveTool] = useState('upload');
+  const [darkMode, setDarkMode] = useState(false);
+  const [activeTool, setActiveTool] = useState('upload');
 
-    let content;
-    switch (activeTool) {
-        case 'merge':
-            content = <PdfMerge />;
-            break;
-        case 'extract':
-            content = <PdfTextExtract />;
-            break;
-        case 'scanner':
-            content = <PdfScanner />;
-            break;
-        default:
-            content = <FileUpload />;
-    }
+  let content;
+  switch (activeTool) {
+    case 'merge':
+      content = <PdfMerge />;
+      break;
+    case 'extract':
+      content = <PdfTextExtract />;
+      break;
+    case 'scanner':
+      content = <PdfScanner />;
+      break;
+    default:
+      content = <FileUpload />;
+  }
 
-    return (
-        <div style={{
-            backgroundColor: darkMode ? '#1a1a1a' : '#fff',
-            color: darkMode ? '#fff' : '#000',
-            minHeight: '100vh',
-            fontFamily: 'Arial, sans-serif',
-            width: '100vw',
-            height: '100vh',
-            display: 'flex'
-        }}>
-            <aside style={{
-                width: 240,
-                background: darkMode ? '#222' : '#f5f5f5',
-                padding: '32px 0',
-                display: 'flex',
-                flexDirection: 'column',
-                gap: 24,
-                borderRight: '1px solid #ccc',
-                height: '100vh',
-                boxSizing: 'border-box'
-            }}>
-                <button onClick={() => setActiveTool('upload')}>PDF Upload</button>
-                <button onClick={() => setActiveTool('merge')}>PDF Merge</button>
-                <button onClick={() => setActiveTool('extract')}>Extract Text</button>
-                <button onClick={() => setActiveTool('scanner')}>PDF Scanner (Camera or Image)</button>
-                <button
-                    onClick={() => setDarkMode(!darkMode)}
-                    style={{ marginTop: 40 }}
-                >
-                    {darkMode ? 'Light Mode' : 'Dark Mode'}
-                </button>
-            </aside>
-            <main style={{
-                flex: 1,
-                padding: 0,
-                margin: 0,
-                minHeight: '100vh',
-                height: '100vh',
-                display: 'flex',
-                flexDirection: 'column'
-            }}>
-                <header style={{
-                    padding: '24px 40px 12px 40px',
-                    background: darkMode ? '#181818' : '#fff',
-                    borderBottom: '1px solid #eee'
-                }}>
-                    <h1 style={{ margin: 0 }}>PDF Master — Free PDF Tools</h1>
-                </header>
-                <div style={{
-                    flex: 1,
-                    padding: 40,
-                    overflow: 'auto'
-                }}>
-                    {content}
-                </div>
-            </main>
+  return (
+    <div className={`app-root${darkMode ? ' dark' : ''}`}>
+      <aside className="sidebar">
+        <div className="logo-area">
+          <span className="logo-emoji">📚</span>
+          <span className="logo-text">PDF Master</span>
         </div>
-    );
+        <nav>
+          {tools.map(tool => (
+            <button
+              className={`sidebar-btn${activeTool === tool.key ? ' active' : ''}`}
+              key={tool.key}
+              onClick={() => setActiveTool(tool.key)}
+            >
+              <span className="sb-ico">{tool.icon}</span>
+              {tool.label}
+            </button>
+          ))}
+        </nav>
+        <div className="sidebar-bottom">
+          <button 
+            className="sidebar-btn"
+            onClick={() => setDarkMode(dm => !dm)}
+            aria-label="Toggle dark mode"
+          >
+            <span className="sb-ico">{darkMode ? '🌞' : '🌙'}</span>
+            {darkMode ? 'Light' : 'Dark'} Mode
+          </button>
+          <div className="sidebar-credit">
+            <span>By paikanadham-byte</span>
+          </div>
+        </div>
+      </aside>
+      <main className="main-content">
+        <header className="main-header">
+          <h1>Free PDF Tools</h1>
+        </header>
+        <section className="tool-card">
+          {content}
+        </section>
+      </main>
+    </div>
+  );
 }
