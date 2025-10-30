@@ -1,0 +1,239 @@
+/* FONT IMPORT */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap');
+
+:root {
+  --primary: #0066ee;
+  --primary-dark: #0053bb;
+  --sidebar-bg: #f5f7fa;
+  --sidebar-dark: #23272f;
+  --sidebar-active: #e9f1ff;
+  --sidebar-active-dark: #232f50;
+  --bg: #f6f8fa;
+  --bg-dark: #171a1f;
+  --card-bg: #fff;
+  --card-bg-dark: #22242a;
+  --text: #222;
+  --text-dark: #fafafa;
+  --border: #d7dbe0;
+  --border-dark: #22242a;
+  --shadow: 0 2px 16px 0 rgba(60,72,99,.06);
+}
+
+body {
+  font-family: 'Inter', Arial, sans-serif;
+  background: var(--bg);
+  margin: 0;
+  min-height: 100vh;
+}
+
+.app-root {
+  display: flex;
+  min-height: 100vh;
+  width: 100vw;
+  background: var(--bg);
+  color: var(--text);
+  transition: background 0.2s, color 0.2s;
+}
+
+.app-root.dark {
+  background: var(--bg-dark);
+  color: var(--text-dark);
+}
+
+.sidebar {
+  width: 270px;
+  background: var(--sidebar-bg);
+  border-right: 1px solid var(--border);
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  padding: 0 0 0 0;
+  transition: background 0.2s, border 0.2s;
+}
+
+.app-root.dark .sidebar {
+  background: var(--sidebar-dark);
+  border-right: 1px solid var(--border-dark);
+}
+
+.logo-area {
+  font-size: 2rem;
+  font-weight: 700;
+  padding: 32px 0 16px 36px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.logo-emoji {
+  font-size: 2.4rem;
+}
+.logo-text {
+  font-size: 1.3rem;
+  font-weight: 700;
+  letter-spacing: 1px;
+}
+
+.sidebar nav {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding: 0 0 0 16px;
+}
+
+.sidebar-btn {
+  background: none;
+  border: none;
+  outline: none;
+  color: inherit;
+  font-family: inherit;
+  font-size: 1.08rem;
+  padding: 10px 0 10px 20px;
+  margin-right: 20px;
+  margin-bottom: 2px;
+  border-radius: 0 40px 40px 0;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  cursor: pointer;
+  transition: background 0.16s, color 0.16s;
+}
+
+.sidebar-btn:hover,
+.sidebar-btn.active {
+  background: var(--sidebar-active);
+  color: var(--primary-dark);
+}
+
+.app-root.dark .sidebar-btn:hover,
+.app-root.dark .sidebar-btn.active {
+  background: var(--sidebar-active-dark);
+  color: var(--primary);
+}
+
+.sb-ico {
+  font-size: 1.35em;
+  width: 26px;
+  text-align: center;
+}
+
+.sidebar-bottom {
+  margin-top: auto;
+  padding: 28px 0 16px 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.sidebar-credit {
+  font-size: 0.95em;
+  color: #8e99ad;
+  margin-top: 12px;
+}
+
+.app-root.dark .sidebar-credit {
+  color: #b0bad8;
+}
+
+.main-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  background: var(--bg);
+  transition: background 0.2s;
+}
+
+.app-root.dark .main-content {
+  background: var(--bg-dark);
+}
+
+.main-header {
+  padding: 38px 0 10px 0;
+  text-align: center;
+}
+
+.main-header h1 {
+  font-size: 2.15rem;
+  font-weight: 800;
+  letter-spacing: 1px;
+  margin: 0;
+}
+
+.tool-card {
+  max-width: 700px;
+  margin: 36px auto 0 auto;
+  background: var(--card-bg);
+  border-radius: 18px;
+  box-shadow: var(--shadow);
+  padding: 40px 38px 38px 38px;
+  min-height: 420px;
+  transition: background 0.2s, color 0.2s;
+  color: inherit;
+}
+
+.app-root.dark .tool-card {
+  background: var(--card-bg-dark);
+  color: var(--text-dark);
+  box-shadow: 0 2px 16px 0 rgba(40,56,80,.15);
+}
+
+/* Material Buttons and Inputs */
+.btn {
+  background: var(--primary);
+  color: #fff;
+  border: none;
+  border-radius: 7px;
+  padding: 12px 26px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  box-shadow: 0 2px 8px 0 rgba(60,72,99,.08);
+  transition: background 0.15s, box-shadow 0.15s;
+}
+.btn:disabled {
+  background: #cccccc;
+  color: #f3f3f3;
+  cursor: not-allowed;
+}
+.btn:hover:not(:disabled) {
+  background: var(--primary-dark);
+  box-shadow: 0 4px 14px 0 rgba(0,0,0,.13);
+}
+
+input[type="file"] {
+  border: 0;
+  border-radius: 5px;
+  color: var(--text);
+  background: #f9f9f9;
+  padding: 8px 12px;
+  margin: 0 0 12px 0;
+  font-size: 1rem;
+}
+
+textarea {
+  width: 100%;
+  padding: 15px;
+  border-radius: 8px;
+  border: 1px solid var(--border);
+  font-size: 1rem;
+  background: #f3f6fa;
+  color: var(--text);
+  resize: vertical;
+  margin-top: 10px;
+}
+
+.app-root.dark textarea {
+  background: #181c23;
+  color: #fafafa;
+  border: 1px solid #292c36;
+}
+
+h2 {
+  font-size: 1.35rem;
+  margin-top: 0;
+  font-weight: 700;
+  margin-bottom: 1.4em;
+  letter-spacing: 0.5px;
+}
