@@ -1,3 +1,4 @@
+cat > src/components/PdfMerge.jsx <<'EOF'
 import React, { useState } from 'react';
 import { PDFDocument } from 'pdf-lib';
 
@@ -18,7 +19,6 @@ export default function PdfMerge() {
       setMessage('Please select at least 2 PDF files.');
       return;
     }
-
     const mergedPdf = await PDFDocument.create();
 
     for (let file of files) {
@@ -55,3 +55,4 @@ export default function PdfMerge() {
     </div>
   );
 }
+EOF
