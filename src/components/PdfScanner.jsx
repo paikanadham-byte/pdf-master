@@ -1,3 +1,4 @@
+cat > src/components/PdfScanner.jsx <<'EOF'
 import React, { useState, useRef } from 'react';
 import { PDFDocument } from 'pdf-lib';
 
@@ -10,7 +11,6 @@ export default function PdfScanner() {
   const canvasRef = useRef(null);
   const [error, setError] = useState('');
 
-  // Handle uploaded images
   const handleImageChange = (e) => {
     const files = Array.from(e.target.files);
     setImages(files);
@@ -19,7 +19,6 @@ export default function PdfScanner() {
     setCameraOn(false);
   };
 
-  // Start camera
   const handleStartCamera = async () => {
     setError('');
     setImages([]);
@@ -37,7 +36,6 @@ export default function PdfScanner() {
     }
   };
 
-  // Stop camera
   const handleStopCamera = () => {
     setCameraOn(false);
     if (videoRef.current && videoRef.current.srcObject) {
@@ -47,7 +45,6 @@ export default function PdfScanner() {
     }
   };
 
-  // Capture photo from camera
   const handleCapture = () => {
     if (!videoRef.current || !canvasRef.current) return;
     const video = videoRef.current;
@@ -61,7 +58,6 @@ export default function PdfScanner() {
     }, 'image/png');
   };
 
-  // Convert images to PDF
   const handleConvert = async () => {
     const srcImages = cameraOn ? capturedImages : images;
     if (!srcImages.length) return;
@@ -89,7 +85,6 @@ export default function PdfScanner() {
     setPdfUrl(URL.createObjectURL(blob));
   };
 
-  // Remove a captured image
   const removeCapturedImage = idx => {
     setCapturedImages(prev => prev.filter((_, i) => i !== idx));
   };
@@ -187,3 +182,4 @@ export default function PdfScanner() {
     </div>
   );
 }
+EOF
