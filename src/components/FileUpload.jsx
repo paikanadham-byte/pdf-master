@@ -1,3 +1,4 @@
+cat > src/components/FileUpload.jsx <<'EOF'
 import React, { useState } from 'react';
 
 export default function FileUpload() {
@@ -34,3 +35,4 @@ export default function FileUpload() {
     </div>
   );
 }
+EOF
