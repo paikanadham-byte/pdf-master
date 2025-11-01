@@ -1,3 +1,4 @@
+cat > src/components/PdfTextExtract.jsx <<'EOF'
 import React, { useState } from 'react';
 import * as pdfjsLib from 'pdfjs-dist/build/pdf';
 import pdfjsWorker from 'pdfjs-dist/build/pdf.worker.entry';
@@ -34,7 +35,7 @@ export default function PdfTextExtract() {
       for (let pageNum = 1; pageNum <= pdf.numPages; pageNum++) {
         const page = await pdf.getPage(pageNum);
         const content = await page.getTextContent();
-        extracted += content.items.map(item => item.str).join(' ') + '\n\n';
+        extracted += content.items.map(item => item.str).join(' ') + '\\n\\n';
       }
       setText(extracted);
     } catch (err) {
@@ -64,3 +65,4 @@ export default function PdfTextExtract() {
     </div>
   );
 }
+EOF
